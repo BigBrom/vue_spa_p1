@@ -1,9 +1,19 @@
-const path = require('path');
+const path = require('path')
 
 const config = {
   mode: 'production',
   entry: {
     app: path.resolve(__dirname, '../src/client-entry.js')
+  },
+  module: {
+    rules: [
+      {
+        enforce: 'pre',
+        test: /(\.js$)/,
+        loader: 'eslint-loader',
+        exclude: /node_modules/
+      }
+    ]
   },
   resolve: {
     alias: {
@@ -17,4 +27,4 @@ const config = {
   }
 }
 
-module.exports = config;
+module.exports = config
