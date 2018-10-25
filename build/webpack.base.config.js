@@ -1,8 +1,6 @@
 const path = require('path')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const config = {
-  mode: 'production',
   entry: {
     app: path.resolve(__dirname, '../src/client-entry.js')
   },
@@ -16,7 +14,11 @@ const config = {
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
+        options: {
+          css: 'css-loader',
+          'scss': 'css-loader|sass-loader'
+        }
       },
       {
         test: /\.js$/,
@@ -29,11 +31,7 @@ const config = {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/',
     filename: 'assets/js/[name].js'
-  },
-  plugins: [
-    // make sure to include the plugin for the magic
-    new VueLoaderPlugin()
-  ]
+  }
 }
 
 module.exports = config
