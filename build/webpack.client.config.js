@@ -6,7 +6,7 @@ const config = Object.assign({}, base, {
 })
 
 config.module.rules
-  .filter(x => { return x.loader == 'vue-loader' })
+  .filter(x => { return x.loader === 'vue-loader' })
   .forEach(x => x.options.extractCSS = true)
 
 config.plugins.push(
